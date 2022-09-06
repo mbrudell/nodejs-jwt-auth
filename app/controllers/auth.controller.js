@@ -39,3 +39,45 @@ export const signup = (req, res) => {
         res.status(500).send({ message: err.message})
     })
 }
+
+export const signin = (req, res) => {
+    User.findOne({ 
+        where: { 
+            username: req.user.username
+        }
+    })
+    .then(user => {
+        if(!user){
+            return res.status(404).send({ message: "User Not Found"})
+        }
+        var passwordIsValid = bcrypt.compareSync(
+            req.body.password,
+            user.password
+        )
+        if(!passwordIsValid){
+            return res.status(401).send({ 
+                accessToken: null,
+                message: "Invalid Password!"
+            })
+        }
+        var token = jwt.sign({ id: user.id}, secret, { 
+            expiresIn: 86400 // 24hrs
+        })
+        var authorities = [];
+        user.getRoles().then(roles => {
+            for (let i = 0; i < roles.length; i++) {
+                authorities.push("ROLE_" + roles[i].name.toUpperCase());
+            }
+            res.status(200).send({
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                roles: authorities,
+                accessToken: token
+            })
+        })
+    })
+    .catch(err => {
+        res.status(500).send({ message: err.message })
+    })
+}
