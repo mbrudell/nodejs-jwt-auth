@@ -27,16 +27,31 @@ const checkDuplicateUsernameOrEmail = (req, res, next) => {
     })
 }
 
-const checkRolesExisted = (req, res, next) => {
+/**
+ * 
+ * to improve this function am not satisfied
+ * hii function ni WIP
+ * 
+ */
+const checkRolesExisted = async (req, res, next) => {
     if(req.body.roles) {
-        for(let i =0; i < req.body.roles.length; i++) {
-            if(!Role.includes(req.body.roles[i])){
-                res.status(400).send({
-                    message: "Failed! Role does not exist = " + req.body.roles[i]
-                })
-                return
-            }
-        }
+        // // console.log(req.body.roles)
+        // // console.log(User.getRoles())
+        // const roles = await Role.findAll({attributes:['name'], raw: true}).ToArray();
+        // console.log(roles)
+        // for(let i =0; i < req.body.roles.length; i++) {
+        //     // roles.map(r => {
+        //     //     console.log(r.name)
+        //     // })
+        //     // console.log(roles.includes(req.body.roles[i]))
+        //     // if(!nyef.includes(req.body.roles[i])){
+        //         // console.log(nyef.includes(req.body.roles[i]))
+        //     // //     res.status(400).send({
+        //     // //         message: "Failed! Role does not exist = " + req.body.roles[i]
+        //     // //     })
+        //     // //     return
+        //     // }
+        // }
     }
     next();
 }
