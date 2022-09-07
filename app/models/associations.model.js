@@ -1,3 +1,4 @@
+import sequelize from './index.js'
 import User from './user.model.js'
 import Role from './role.model.js'
 
@@ -14,4 +15,5 @@ Role.belongsToMany(User, {
     otherKey: "userId"
 })
 
-export { User, Role}
+await sequelize.sync({force : true}); // creates all tables 
+export { User, Role }

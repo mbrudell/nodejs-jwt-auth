@@ -14,6 +14,4 @@ const sequelize = new Sequelize(DB, USER, PASSWORD, {
   }
 });
 
-await sequelize.sync({force : true});
-
 export default sequelize;

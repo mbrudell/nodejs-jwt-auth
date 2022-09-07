@@ -4,8 +4,6 @@ import { Op } from "sequelize";
 
 import { secret } from '../config/auth.config.js';
 import { User, Role } from '../models/associations.model.js'
-// import User from "../models/user.model.js";
-// import Role from "../models/role.model.js";
 
 export const signup = (req, res) => {
     // save to DB
