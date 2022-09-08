@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize"
 import { v4 as uuidv4 } from 'uuid'
+
+import sequelize from './index.js'
 import { jwtRefreshExpiration } from '../config/auth.config.js'
 
 const RefreshToken = sequelize.define('refreshToken',{

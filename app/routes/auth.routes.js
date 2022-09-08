@@ -1,7 +1,7 @@
 import express from "express";
 
 import verifySignUp from "../middleware/verifySignUp.js";
-import { signin, signup } from "../controllers/auth.controller.js"
+import { signin, signup, refreshToken } from "../controllers/auth.controller.js"
 
 const router = express.Router();
 
@@ -23,5 +23,7 @@ router.post(
 )
 
 router.post('/api/auth/signin', signin)
+
+router.post('/api/auth/refreshtoken', refreshToken)
 
 export default router;
