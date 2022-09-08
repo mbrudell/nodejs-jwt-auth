@@ -59,7 +59,7 @@ export const signin = (req, res) => {
                 message: "Invalid Password!"
             })
         }
-        var token = jwt.sign({ id: user.id}, secret, { 
+        var token = jwt.sign({ id: user.id, username: user.username}, secret, {  // can customise the way i want
             expiresIn: 86400 // 24hrs
         })
         var authorities = [];
