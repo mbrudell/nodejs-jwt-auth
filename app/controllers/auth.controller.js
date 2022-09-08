@@ -99,7 +99,7 @@ export const refreshToken = async (req, res) => {
             res.status(403).json({ message: "Refresh Token not in db"})
             return
         }
-        if (RefreshToken.verifyEpiration(refreshToken)){
+        if (RefreshToken.verifyExpiration(refreshToken)){
             RefreshToken.destroy({ where: { id: refreshToken.id}})
 
             res.status(403).json({ message: "Refresh token expired. Signin again!"})

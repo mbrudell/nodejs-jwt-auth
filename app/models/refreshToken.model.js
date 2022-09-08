@@ -21,7 +21,7 @@ RefreshToken.createToken = async function (user) {
     return refreshToken.token;
 }
 
-RefreshToken.verifyEpiration = (token) => {
+RefreshToken.verifyExpiration = (token) => {
     return token.expiryDate.getTime() < new Date().getTime()
 }
 
