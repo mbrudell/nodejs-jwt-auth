@@ -42,7 +42,7 @@ export const signup = (req, res) => {
 export const signin = (req, res) => {
     User.findOne({ 
         where: { 
-            username: req.user.username
+            username: req.body.username
         }
     })
     .then(user => {
