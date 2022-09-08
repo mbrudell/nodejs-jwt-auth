@@ -3,6 +3,15 @@ import jwt from "jsonwebtoken";
 import { secret } from "../config/auth.config.js"
 import { User } from "../models/associations.model.js"
 
+const { TokenExpiredError } = jwt;
+
+const catchError = (err, res) => {
+    if (err instanceof TokenExpiredError) {
+        return res.status(401).send({message: "Unauthorized! Access Token has expired!"})
+    }
+    return res.status(401).send({message: "Unauthorized!"})
+}
+
 const verifyToken = (req, res, next) => {
     let token = req.headers["x-access-token"]
     if(!token){

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs"
 import { Op } from "sequelize";
 
 import { secret } from '../config/auth.config.js';
-import { User, Role } from '../models/associations.model.js'
+import { User, Role, RefreshToken } from '../models/associations.model.js'
 
 export const signup = (req, res) => {
     // save to DB
