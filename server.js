@@ -1,17 +1,20 @@
 import express, {json, urlencoded} from 'express';
 import 'dotenv/config'
-// import sequelize from "sequelize";
+import cors from 'cors'
 
 const app = express();
 app.use(json());
 app.use(urlencoded({extended: true}));
 
+var corsOptions = {
+    origin: "http://localhost:4444"
+};
+
+app.use(cors())
+
 app.get('/', (req, res) => {
     res.json({message: 'Karibu KE'})
 })
-
-// sync all tables
-// sequelize.sync();
 
 import authRoutes from './app/routes/auth.routes.js'
 app.use('', authRoutes)

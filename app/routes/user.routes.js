@@ -1,5 +1,5 @@
 import express from 'express';
-import { allAccess, userBoard, adminBoard, moderatorBoard  } from '../controllers/user.controller.js';
+import { allAccess, userBoard, adminBoard, moderatorBoard, userList } from '../controllers/user.controller.js';
 import authJwt from "../middleware/authJwt.js"
 
 const router = express.Router();
@@ -18,6 +18,13 @@ router.get(
     [authJwt.verifyToken],
     userBoard
 )
+
+router.get(
+    '/api/users',
+    [authJwt.verifyToken, authJwt.isAdmin],
+    userList
+)
+
 router.get(
     '/api/test/mod',
     [authJwt.verifyToken, authJwt.isModerator],
